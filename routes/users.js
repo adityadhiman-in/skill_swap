@@ -176,4 +176,42 @@ router.get("/rewards", ensureAuthenticated, (req, res) => {
   const rewards = "";
   res.render("rewards", { user: req.user, rewards });
 });
+router.get("/admin/login", (req, res) => {
+  res.render("adminLogin"); // Render the login page
+});
+
+// @route   POST /admin/login
+// @desc    Handle admin login
+router.post("/admin/login", (req, res) => {
+  const { username, password } = req.body;
+
+  // Check credentials
+  if (username === "admin" && password === "1234567890") {
+    // Redirect to admin dashboard if login is successful
+    return res.redirect("/users/admin/dashboard");
+  } else {
+    // Re-render login page with an error message if login fails
+    return res
+      .status(401)
+      .render("adminLogin", { error: "Invalid credentials" });
+  }
+});
+
+// @route   GET /admin/dashboard
+// @desc    Render admin stats page
+router.get("/admin/dashboard", async (req, res) => {
+  // Fetch total counts and user list
+  const totalUsers = await User.countDocuments();
+  const totalPosts = await Post.countDocuments();
+  const totalAffiliates = "Not Available";
+  const users = await User.find();
+
+  res.render("admin", {
+    totalUsers,
+    totalPosts,
+    totalAffiliates,
+    users,
+  });
+});
+
 export default router;
