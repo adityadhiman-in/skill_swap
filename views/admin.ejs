@@ -1,6 +1,6 @@
-<%- include("partials/header.ejs") %>
+<%- include("partials/adminHeader.ejs") %>
 
-<div class="container my-5">
+<div class="containerAdmin">
   <h1 class="text-center mb-4">Admin Panel</h1>
 
   <div class="row text-center">
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="mt-5">
+  <div class="userslist mt-5">
     <h2>User List</h2>
     <table class="table">
       <thead>
@@ -48,7 +48,9 @@
           <td><%= user.email %></td>
           <td><%= user.skills.join(', ') %></td>
           <td>
-            <a href="/admin/delete-user/<%= user._id %>" class="btn btn-danger"
+            <a
+              href="users/admin/delete-user/<%= user._id %>"
+              class="btn btn-danger"
               >Delete</a
             >
           </td>
@@ -61,10 +63,12 @@
 
 <%- include("partials/footer.ejs") %>
 <style>
-  .container {
-    padding: 2rem;
+  .containerAdmin {
+    padding: 2rem 10rem;
   }
-
+  .userslist {
+    padding-top: 5rem;
+  }
   .card {
     margin: 1rem 0;
   }

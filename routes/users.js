@@ -84,6 +84,12 @@ router.get("/edit-profile", ensureAuthenticated, (req, res) => {
   res.render("editProfile", { user: req.user });
 });
 
+// @route GET /users/dashboard
+router.get("/dashboard", ensureAuthenticated, async (req, res) => {
+  const posts = await Post.find().sort({ date: -1 }); // Fetch all posts
+  res.render("dashboard", { posts, user: req.user });
+});
+
 // @route   POST /users/edit-profile
 router.post("/edit-profile", ensureAuthenticated, async (req, res) => {
   const { username, email, password, password2 } = req.body;
