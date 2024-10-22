@@ -19,6 +19,7 @@ The concept of Skill Swap is rooted in the idea that everyone has something valu
 - Request and offer skills
 - Dashboard for managing skills and requests
 - User-friendly interface
+- And many more updates to come
 
 ## Installation
 
